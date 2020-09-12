@@ -104,15 +104,13 @@ parts:
 
       else
 
-        IMAGE_PATH=
         IMAGE_NAME=
         ARCH=$(uname -m)
 
         case "$ARCH" in
           x86_64)
-            IMAGE_PATH="2018/07/19"
-            IMAGE_NAME="android_amd64.img"
-            IMAGE_HASH="6b04cd33d157814deaf92dccf8a23da4dc00b05ca6ce982a03830381896a8cca"
+            IMAGE_NAME="android_7.1.1_r13_patched.img"
+            IMAGE_HASH="44bc2e621251d18ab9a44b97c9006794fbad39a377fae60a09f2d320940fcbb2"
             ;;
           *)
             echo "ERROR: Unknown architecture $ARCH"
@@ -123,7 +121,7 @@ parts:
         # FIXME: downloading with a source: field doesn't work as snapcraft
         # expects the downloaded file to be an archive it can extract.
         echo "Downloading image..."
-        wget http://build.anbox.io/android-images/$IMAGE_PATH/$IMAGE_NAME
+        wget https://fjordtek.com/pool/applications/anbox/images/$IMAGE_NAME
 
         echo "$IMAGE_HASH $IMAGE_NAME" > image-hash
         sha256sum -c image-hash || exit 1

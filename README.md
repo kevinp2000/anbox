@@ -154,6 +154,10 @@ Running Anbox from a local build requires a few more things you need to know
 about. Please have a look at the ["Runtime Setup"](docs/runtime-setup.md)
 documentation.
 
+## Android Image
+
+The image used by this fork was made by Pekka Helenius. This image fixes many issues with the official prebuilt image, such as the audio latency. The actual image files have not been changed in this fork, instead the snapcraft.yaml file is configured to download the image from his website at [this location](https://fjordtek.com/pool/applications/anbox/images/)
+
 ## Documentation
 
 You will find additional documentation for Anbox in the *docs* subdirectory
