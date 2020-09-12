@@ -51,6 +51,18 @@ if [ "$(snapctl get server-side-decoration.enable)" = true ]; then
 	export ANBOX_FORCE_SERVER_SIDE_DECORATION=true
 fi
 
+if [ "$(snapctl get single-window.enable)" = true ]; then
+	export ANBOX_FORCE_SINGLE_WINDOW=true
+	
+	regex_number="^[1-9][0-9]*$"
+	if expr "$(snapctl get single-window.width)" : "$regex_number" > /dev/null; then
+	  export ANBOX_SINGLE_WINDOW_WIDTH="$(snapctl get single-window.width)"
+	fi
+	if expr "$(snapctl get single-window.height)" : "$regex_number" > /dev/null; then
+	  export ANBOX_SINGLE_WINDOW_HEIGHT="$(snapctl get single-window.height)"
+	fi
+fi
+
 # Use custom Anbox binary for debugging purposes if available
 ANBOX="$SNAP"/usr/bin/anbox
 if [ -e "$SNAP_COMMON"/anbox.debug ]; then

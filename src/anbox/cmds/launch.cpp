@@ -61,6 +61,13 @@ bool anbox::cmds::Launch::launch_session_manager() {
   const auto should_force_software_rendering = utils::get_env_value("ANBOX_FORCE_SOFTWARE_RENDERING", "false");
   if (should_force_software_rendering == "true")
     args.push_back("--software-rendering");
+  const auto should_force_single_window = utils::get_env_value("ANBOX_FORCE_SINGLE_WINDOW", "false");
+  if (should_force_single_window == "true") {
+    args.push_back("--single-window");
+    const auto window_width = utils::get_env_value("ANBOX_SINGLE_WINDOW_WIDTH", "1024");
+    const auto window_height = utils::get_env_value("ANBOX_SINGLE_WINDOW_HEIGHT" "768");
+    args.push_back("--window-size=" + window_width + "," + window_height);
+  }
 
   std::map<std::string,std::string> env;
   core::posix::this_process::env::for_each([&](const std::string &name, const std::string &value) {
